@@ -1,21 +1,11 @@
-/**
- * Learn more about light and dark modes:
- * https://docs.expo.dev/guides/color-schemes/
- */
+import { Colors } from '@/constants/colors';
 
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
-
+// DayReel is always dark — this hook is kept for scaffold compatibility only.
+// Use Colors directly from @/constants/colors in new code.
 export function useThemeColor(
   props: { light?: string; dark?: string },
-  colorName: keyof typeof Colors.light & keyof typeof Colors.dark
-) {
-  const theme = useColorScheme() ?? 'light';
-  const colorFromProps = props[theme];
-
-  if (colorFromProps) {
-    return colorFromProps;
-  } else {
-    return Colors[theme][colorName];
-  }
+  colorName: keyof typeof Colors
+): string {
+  const colorFromProps = props.dark;
+  return colorFromProps ?? Colors[colorName];
 }

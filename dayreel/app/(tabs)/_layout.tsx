@@ -1,33 +1,53 @@
 import { Tabs } from 'expo-router';
-import React from 'react';
+import { Ionicons } from '@expo/vector-icons';
 
-import { HapticTab } from '@/components/haptic-tab';
-import { IconSymbol } from '@/components/ui/icon-symbol';
-import { Colors } from '@/constants/theme';
-import { useColorScheme } from '@/hooks/use-color-scheme';
+import { Colors } from '@/constants/colors';
+
+type IoniconsName = React.ComponentProps<typeof Ionicons>['name'];
+
+function TabIcon({ name, color }: { name: IoniconsName; color: string }) {
+  return <Ionicons name={name} size={22} color={color} />;
+}
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-      }}>
+        tabBarActiveTintColor: Colors.accent,
+        tabBarInactiveTintColor: Colors.textDim,
+        tabBarStyle: {
+          backgroundColor: Colors.bg,
+          borderTopColor: Colors.border,
+          borderTopWidth: 1,
+          paddingTop: 4,
+        },
+        tabBarLabelStyle: {
+          fontSize: 11,
+          fontWeight: '500',
+          letterSpacing: 0.3,
+        },
+      }}
+    >
       <Tabs.Screen
-        name="index"
+        name="record"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Record',
+          tabBarIcon: ({ color }) => <TabIcon name="camera-outline" color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="calendar"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Calendar',
+          tabBarIcon: ({ color }) => <TabIcon name="calendar-outline" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="reflect"
+        options={{
+          title: 'Reflect',
+          tabBarIcon: ({ color }) => <TabIcon name="mic-outline" color={color} />,
         }}
       />
     </Tabs>
