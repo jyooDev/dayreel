@@ -1,26 +1,29 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 
-import { Colors } from '@/constants/colors';
 import { Screen } from '@/components/ui/screen';
+import { CalendarGrid } from '@/components/calendar/CalendarGrid';
+import { RecentReels } from '@/components/calendar/RecentReels';
 
 export default function CalendarScreen() {
   return (
     <Screen>
-      <View style={styles.center}>
-        <Text style={styles.text}>Calendar — coming soon</Text>
-      </View>
+      <ScrollView
+        style={styles.scroll}
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+      >
+        <CalendarGrid />
+        <RecentReels />
+      </ScrollView>
     </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  center: {
+  scroll: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
-  text: {
-    fontSize: 15,
-    color: Colors.textMuted,
+  content: {
+    paddingBottom: 32,
   },
 });
