@@ -95,6 +95,14 @@ export function getRecentReels(limit: number): Reel[] {
   );
 }
 
+export function getDatesWithClipsInMonth(yearMonth: string): string[] {
+  const rows = db.getAllSync<{ date: string }>(
+    `SELECT DISTINCT date FROM clips WHERE date LIKE ? ORDER BY date`,
+    [`${yearMonth}-%`]
+  );
+  return rows.map((r) => r.date);
+}
+
 export function getDatesWithReadyReels(): string[] {
   const rows = db.getAllSync<{ date: string }>(
     `SELECT date FROM reels WHERE status = 'ready' ORDER BY date DESC`
