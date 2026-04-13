@@ -1,12 +1,12 @@
-import { useEffect } from 'react';
-import { Stack, router } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
+import { useEffect } from "react";
+import { Stack, router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
-import { supabase } from '@/lib/supabase';
-import { initDatabase } from '@/lib/database';
+import { supabase } from "@/lib/supabase";
+import { initDatabase } from "@/lib/database";
 
 export const unstable_settings = {
-  anchor: '(tabs)',
+  anchor: "(tabs)",
 };
 
 export default function RootLayout() {
@@ -17,17 +17,19 @@ export default function RootLayout() {
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session) {
-        router.replace('/(tabs)/record');
+        router.replace("/(tabs)/record");
       } else {
-        router.replace('/(auth)/login');
+        router.replace("/(auth)/login");
       }
     });
 
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
       if (session) {
-        router.replace('/(tabs)/record');
+        router.replace("/(tabs)/record");
       } else {
-        router.replace('/(auth)/login');
+        router.replace("/(auth)/login");
       }
     });
 
@@ -39,7 +41,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name="(auth)" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="player" options={{ headerShown: false }} />
+        {/* <Stack.Screen name="player" options={{ headerShown: false }} /> */}
       </Stack>
       <StatusBar style="light" />
     </>
