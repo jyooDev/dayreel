@@ -19,8 +19,18 @@ function todayDate(): string {
 function formatDate(dateStr: string): string {
   const [year, month, day] = dateStr.split('-').map(Number);
   const months = [
-    'January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December',
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
   ];
   return `${months[month - 1]} ${day}, ${year}`;
 }
@@ -63,7 +73,10 @@ export default function ReflectScreen() {
   function handleSave() {
     const hasContent = mode === 'voice' ? !!audioRelPath : !!textContent.trim();
     if (!hasContent) {
-      Alert.alert('Nothing to save', mode === 'voice' ? 'Record a voice memo first.' : 'Write something first.');
+      Alert.alert(
+        'Nothing to save',
+        mode === 'voice' ? 'Record a voice memo first.' : 'Write something first.',
+      );
       return;
     }
 
@@ -89,7 +102,7 @@ export default function ReflectScreen() {
     });
 
     setSaved(true);
-    Alert.alert('Saved!', "Your reel will be compiled tonight.");
+    Alert.alert('Saved!', 'Your reel will be compiled tonight.');
   }
 
   return (
@@ -102,7 +115,9 @@ export default function ReflectScreen() {
         </Text>
       </View>
 
-      <ModeToggle mode={mode} onChange={setMode} />
+      <View style={styles.modeToggleContainer}>
+        <ModeToggle mode={mode} onChange={setMode} />
+      </View>
 
       {/* Content area */}
       {mode === 'voice' ? (
@@ -117,7 +132,9 @@ export default function ReflectScreen() {
           }}
         />
       ) : (
-        <TextEntry value={textContent} onChange={setTextContent} />
+        <View style={styles.textEntryContainer}>
+          <TextEntry value={textContent} onChange={setTextContent} />
+        </View>
       )}
 
       {/* Bottom */}
@@ -135,11 +152,13 @@ export default function ReflectScreen() {
 
 const styles = StyleSheet.create({
   screen: {
-    paddingHorizontal: 20,
     paddingTop: 16,
+    paddingHorizontal: 16,
     gap: 20,
   },
   header: {
+    paddingTop: 16,
+    paddingHorizontal: 16,
     gap: 4,
   },
   title: {
@@ -155,5 +174,13 @@ const styles = StyleSheet.create({
   bottom: {
     gap: 12,
     paddingBottom: 8,
+    marginHorizontal: 4,
+  },
+  modeToggleContainer: {
+    marginHorizontal: 4,
+  },
+  textEntryContainer: {
+    paddingHorizontal: 4,
+    flex: 1,
   },
 });
