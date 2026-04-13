@@ -37,7 +37,7 @@ export default function OnboardingScreen() {
           </View>
           <Text style={styles.title}>When do you wake up?</Text>
           <Text style={styles.subtitle}>
-            We'll have your DayReel ready by the time you open your eyes.
+            We&apos;ll have your DayReel ready by the time you open your eyes.
           </Text>
         </View>
 

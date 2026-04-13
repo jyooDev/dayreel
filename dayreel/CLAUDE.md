@@ -29,12 +29,13 @@ bun run test                   # Run tests
 
 ## Development workflow
 
-1. Make changes
-2. Commit often with clear messages (e.g. `feat: add camera viewfinder`, `fix: clip thumbnail sizing`)
-3. Run `bun run typecheck`
-4. Run `bun run test`
-5. Run `bun run lint` before the final commit
-6. Open a PR
+1. Make a feature branch
+2. Make changes
+3. Commit often with clear messages (e.g. `feat: add camera viewfinder`, `fix: clip thumbnail sizing`)
+4. Run `bun run typecheck`
+5. Run `bun run test`
+6. Run `bun run lint` before the final commit
+7. Open a PR
 
 ## Database
 
